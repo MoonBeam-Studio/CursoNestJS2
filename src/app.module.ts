@@ -6,6 +6,9 @@ import { CatsModule } from './cats/cats.module';
 import { Cat } from './cats/entities/cat.entity';
 import { BreedsModule } from './breeds/breeds.module';
 import { Breed } from './breeds/entities/breed.entity';
+import { UsersModule } from './users/users.module';
+import { User } from './users/entities/user.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -17,10 +20,12 @@ import { Breed } from './breeds/entities/breed.entity';
       username: 'user_crud',
       password: 'root',
       database: 'db_crud',
-      entities: [Cat, Breed],
+      entities: [Cat, Breed, User],
       synchronize: true,
     }),
     BreedsModule,
+    UsersModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

@@ -14,6 +14,10 @@ export class Breed {
   id: number;
   @Column()
   name: string;
+  @Column()
+  description: string;
+  @Column()
+  origin: string;
   @CreateDateColumn()
   createdAt: Date;
   @UpdateDateColumn()

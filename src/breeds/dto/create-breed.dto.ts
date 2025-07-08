@@ -5,4 +5,8 @@ export class CreateBreedDto {
   @IsString()
   @IsNotEmpty()
   name: string;
+  @IsString()
+  description: string;
+  @IsString()
+  origin: string;
 }
