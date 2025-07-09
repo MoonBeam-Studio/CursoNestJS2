@@ -9,10 +9,7 @@ import {
 } from 'class-validator';
 
 export class CreateCatDto {
-  @IsString()
-  @IsNotEmpty()
-  @MinLength(3)
-  name: string;
+  
   @IsNumber()
   @IsNotEmpty()
   @IsPositive()

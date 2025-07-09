@@ -4,7 +4,7 @@ import { UpdateCatDto } from './dto/update-cat.dto';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Cat } from './entities/cat.entity';
-import { Breed } from 'src/breeds/entities/breed.entity';
+import { Breed } from '../breeds/entities/breed.entity';
 
 @Injectable()
 export class CatsService {
@@ -16,12 +16,12 @@ export class CatsService {
   ) {}
 
   async create(createCatDto: CreateCatDto) {
-    const breed = await this.breedRepository.findOneBy({
+    let breed = await this.breedRepository.findOneBy({
       name: createCatDto.breed,
     });
 
     if (!breed) {
-      throw new BadRequestException(`Breed ${createCatDto.breed} not found`);
+      breed = await this.breedRepository.save({ name: createCatDto.breed });
     }
 
     await this.catRepository.save({
@@ -33,6 +33,7 @@ export class CatsService {
 
   async findAll() {
     return await this.catRepository.find();
+
   }
 
   async findOne(id: number) {

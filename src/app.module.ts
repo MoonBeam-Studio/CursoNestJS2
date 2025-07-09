@@ -9,23 +9,33 @@ import { Breed } from './breeds/entities/breed.entity';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
+import { PetsModule } from './pets/pets.module';
+import { Pet } from './pets/entities/pet.entity';
+import { ValidationsModule } from './validations/validations.module';
+import { Validation } from './validations/entities/validation.entity';
+import { DataSourceOptions } from 'typeorm';
+import { SeederOptions } from 'typeorm-extension';
+
+export const dataSourceOptions: DataSourceOptions & SeederOptions = {
+  type: 'mysql',
+  host: 'localhost',
+  port: 3307,
+  username: 'user_crud',
+  password: 'root',
+  database: 'db_crud',
+  entities: [Cat, Breed, User, Pet, Validation],
+  synchronize: true,
+};
 
 @Module({
   imports: [
+    TypeOrmModule.forRoot(dataSourceOptions),
     CatsModule,
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3307,
-      username: 'user_crud',
-      password: 'root',
-      database: 'db_crud',
-      entities: [Cat, Breed, User],
-      synchronize: true,
-    }),
     BreedsModule,
     UsersModule,
     AuthModule,
+    PetsModule,
+    ValidationsModule,
   ],
   controllers: [],
   providers: [],

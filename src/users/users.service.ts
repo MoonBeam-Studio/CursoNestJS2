@@ -14,6 +14,7 @@ export class UsersService {
   ) {}
 
   create(createUserDto: CreateUserDto) {
+    console.log('Creating user:', createUserDto);
     return this.userRepository.save(createUserDto)
   }
 
@@ -22,7 +23,7 @@ export class UsersService {
   }
 
   findAll() {
-    return `This action returns all users`;
+    return this.userRepository.find();
   }
 
   findOne(id: number) {

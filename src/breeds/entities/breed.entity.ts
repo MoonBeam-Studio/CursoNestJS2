@@ -6,6 +6,7 @@ import {
   Entity,
   OneToMany,
   UpdateDateColumn,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 
 @Entity()
@@ -14,9 +15,9 @@ export class Breed {
   id: number;
   @Column()
   name: string;
-  @Column()
+  @Column({default: ''})
   description: string;
-  @Column()
+  @Column({default: ''})
   origin: string;
   @CreateDateColumn()
   createdAt: Date;
