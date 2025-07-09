@@ -15,17 +15,8 @@ import { ValidationsModule } from './validations/validations.module';
 import { Validation } from './validations/entities/validation.entity';
 import { DataSourceOptions } from 'typeorm';
 import { SeederOptions } from 'typeorm-extension';
+import { dataSourceOptions } from './data-source';
 
-export const dataSourceOptions: DataSourceOptions & SeederOptions = {
-  type: 'mysql',
-  host: 'localhost',
-  port: 3307,
-  username: 'user_crud',
-  password: 'root',
-  database: 'db_crud',
-  entities: [Cat, Breed, User, Pet, Validation],
-  synchronize: true,
-};
 
 @Module({
   imports: [

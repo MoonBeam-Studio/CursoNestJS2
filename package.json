@@ -1,4 +1,5 @@
 {
+
   "name": "curso",
   "version": "0.0.1",
   "description": "",
@@ -6,7 +7,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "seed": "npm run build && ts-node ./node_modules/typeorm-extension/dist/cli/index.js seed -d ./src/app.module.ts",
+    "seed": "npm run build && npx typeorm-extension seed:run -d ./dist/data-source.js",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -21,6 +22,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/jwt": "11.0.0",
@@ -37,6 +39,8 @@
     "rxjs": "^7.8.1",
     "typeorm": "0.3.25",
     "typeorm-extension": "^3.7.1",
+    "typeorm-seeding": "1.6.1",
+    "webpack": "^5.100.0",
     "yarn": "1.22.22"
   },
   "devDependencies": {

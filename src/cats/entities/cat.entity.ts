@@ -1,5 +1,5 @@
-import { Breed } from 'src/breeds/entities/breed.entity';
-import { Pet } from 'src/pets/entities/pet.entity';
+import { Breed } from '../../breeds/entities/breed.entity';
+import { Pet } from '../../pets/entities/pet.entity';
 import {
   Column,
   CreateDateColumn,

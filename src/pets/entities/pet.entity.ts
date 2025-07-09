@@ -1,5 +1,5 @@
-import { Cat } from "src/cats/entities/cat.entity";
-import { User } from "src/users/entities/user.entity";
+import { Cat } from "../../cats/entities/cat.entity";
+import { User } from "../../users/entities/user.entity";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToOne, UpdateDateColumn, JoinColumn, ManyToOne } from "typeorm";
 
 @Entity()

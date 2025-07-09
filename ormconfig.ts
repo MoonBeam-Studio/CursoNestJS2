@@ -1,2 +1,2 @@
-import { dataSourceOptions } from './src/app.module';
+import { dataSourceOptions } from './src/data-source';
 export default dataSourceOptions;

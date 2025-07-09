@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "useDefineForClassFields": false,
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
