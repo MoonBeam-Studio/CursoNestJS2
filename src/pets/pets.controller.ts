@@ -1,5 +1,10 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
+
+// Extend Express Request to include 'user' property
+interface RequestWithUser extends Request {
+  user?: any;
+}
 import { PetsService } from './pets.service';
 import { CreatePetDto } from './dto/create-pet.dto';
 import { UpdatePetDto } from './dto/update-pet.dto';
@@ -20,11 +25,11 @@ export class PetsController {
     return this.petsService.create(createPetDto);
   }
 
-  @Auth(Role.ADMIN)
-  @ApiOperation({ summary: 'List all registered pets' })
   @Get()
-  findAll() {
-    return this.petsService.findAll();
+  @UseGuards(AuthGuard, RolesGuard)
+  @ApiOperation({ summary: 'List all registered pets' })
+  findAll(@Req() request: RequestWithUser) {
+    return this.petsService.findAll(request.user);
   }
 
   @Auth(Role.ADMIN)

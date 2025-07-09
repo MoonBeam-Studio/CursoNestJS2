@@ -9,6 +9,7 @@ import { Pet } from './entities/pet.entity';
 import { Breed } from '../breeds/entities/breed.entity';
 import { Request } from 'express';
 import { Role } from '../enums/rol.enum';
+import { request } from 'http';
 
 @Injectable()
 export class PetsService {
@@ -54,14 +55,25 @@ export class PetsService {
     }
   }
 
-  async findAll() {
-    const pets = await this.petRepository.find();
-    console.log(pets);
+  async findAll(user: any) {
+    if (user.rol === Role.ADMIN) {
+      const pets = await this.petRepository.find();
+      console.log('admin pets');
+      return pets;
+    }
+    const dbUser = await this.userRepository.findOneBy({
+      email: user.email,
+    });
+    if (!dbUser) {
+      throw new BadRequestException(`User with email ${user.email} not found`);
+    }
+    const pets = await this.petRepository.find({ where: { owner: { id: dbUser.id } }, relations: ['owner', 'cat'] });
+    console.log(dbUser);
     return pets;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} pet`;
+  async findOne(id: number) {
+    return await this.petRepository.findOne({ where: { id } });
   }
 
   update(id: number, updatePetDto: UpdatePetDto) {
