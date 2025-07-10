@@ -4,7 +4,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { RegisterDto } from '../auth/dto/register.dto';
 import { UsersService } from '../users/users.service';
-import { User } from '../users/entities/user.entity';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 
 @Injectable()
@@ -15,7 +14,6 @@ export class ValidationsService {
     private readonly usersService: UsersService,
   ) {}
 
-  
   async create(registerDto: RegisterDto) {
     return await this.validationRepository.save(registerDto);
   }

@@ -27,7 +27,7 @@ export class CatsController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'List all regustered cats' })
+  @ApiOperation({ summary: 'List all registered cats' })
   findAll() {
     return this.catsService.findAll();
   }

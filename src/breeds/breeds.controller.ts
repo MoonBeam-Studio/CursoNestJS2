@@ -11,10 +11,9 @@ import { BreedsService } from './breeds.service';
 import { CreateBreedDto } from './dto/create-breed.dto';
 import { Auth } from '../auth/decorators/auth.decorator';
 import { Role } from '../enums/rol.enum';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Auth(Role.ADMIN)
-@ApiBearerAuth()
 @ApiTags('Breeds - Management of breeds (creation, updates, and retrieval)')
 @Controller('breeds')
 export class BreedsController {

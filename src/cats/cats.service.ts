@@ -55,9 +55,19 @@ export class CatsService {
   }
 
   async update(id: number, updateCatDto: UpdateCatDto) {
-    // await this.catRepository.update(id, updateCatDto).then(() => {
-    //   return `This action updates a #${id} cat`;
-    // });
+    let updateData: any = { ...updateCatDto };
+
+    if (updateCatDto.breed) {
+      let breed = await this.breedRepository.findOneBy({ name: updateCatDto.breed });
+      if (!breed) {
+        breed = await this.breedRepository.save({ name: updateCatDto.breed });
+      }
+      updateData.breed = breed;
+    }
+    const existingCat = await this.catRepository.findOneBy({ id });
+
+    await this.catRepository.update(id, updateData);
+    return { message: 'Cat updated', existingCat}
   }
 
   async remove(id: number) {

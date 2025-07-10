@@ -1,4 +1,3 @@
-import { Delete } from "@nestjs/common";
 import { Pet } from "../../pets/entities/pet.entity";
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany } from "typeorm";
 

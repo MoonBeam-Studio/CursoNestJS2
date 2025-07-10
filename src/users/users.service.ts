@@ -7,14 +7,12 @@ import { User } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
-
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    console.log('Creating user:', createUserDto);
     return await this.userRepository.save(createUserDto)
   }
 

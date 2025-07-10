@@ -5,9 +5,6 @@ import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-
-  // await manualSeed();
-
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api/v1');
 
@@ -20,9 +17,9 @@ async function bootstrap() {
   );
 
   const config = new DocumentBuilder()
-    .setTitle("Cats example")
-    .setDescription("The cats API description")
-    .setVersion("1.0")
+    .setTitle("DLT Cats API")
+    .setDescription("Cats API for DLT test")
+    .setVersion("1.0.4.20.6.9")
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);

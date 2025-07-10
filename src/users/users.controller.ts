@@ -4,10 +4,9 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Auth } from '../auth/decorators/auth.decorator';
 import { Role } from '../enums/rol.enum';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Auth(Role.ADMIN)
-@ApiBearerAuth()
 @ApiTags('Users - User related fields (register, validation, login, show all, etc)')
 @Controller('users')
 export class UsersController {

@@ -3,10 +3,9 @@ import { ValidationsService } from './validations.service';
 import { CreateValidationDto } from './dto/create-validation.dto';
 import { Auth } from '../auth/decorators/auth.decorator';
 import { Role } from '../enums/rol.enum';
-import { ApiBearerAuth, ApiHeader, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiHeader, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Auth(Role.ADMIN)
-@ApiBearerAuth()
 @ApiTags('Users - User related fields (register, validation, login, show all, etc)')
 @Controller('validations')
 export class ValidationsController {

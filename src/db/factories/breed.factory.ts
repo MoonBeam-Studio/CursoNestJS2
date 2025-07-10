@@ -1,8 +1,5 @@
-// src/db/factories/user.factory.ts
 import { Breed } from 'src/breeds/entities/breed.entity';
-import { User } from 'src/users/entities/user.entity';
 import { setSeederFactory } from 'typeorm-extension';
-
 
 export default setSeederFactory(Breed, (faker) => {
     const breed = new Breed();

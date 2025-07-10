@@ -1,7 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
 
-// Extend Express Request to include 'user' property
 interface RequestWithUser extends Request {
   user?: any;
 }

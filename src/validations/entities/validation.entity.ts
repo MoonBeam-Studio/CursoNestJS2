@@ -1,6 +1,5 @@
 
-import { Pet } from "src/pets/entities/pet.entity";
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm";
 
 @Entity()
 export class Validation {

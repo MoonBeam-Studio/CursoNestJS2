@@ -1,4 +1,3 @@
-// src/db/seeds/user.seeder.ts
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 import { DataSource } from 'typeorm';
 import { User } from 'src/users/entities/user.entity';
