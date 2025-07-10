@@ -13,28 +13,32 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto) {
     console.log('Creating user:', createUserDto);
-    return this.userRepository.save(createUserDto)
+    return await this.userRepository.save(createUserDto)
   }
 
   findOneByEmail(email: string) {
     return this.userRepository.findOneBy({ email });
   }
 
-  findAll() {
-    return this.userRepository.find();
+  async findAll() {
+    return await this.userRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    return await this.userRepository.findOneBy({ id });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const update =  await this.userRepository.update(id, updateUserDto)
+    const user = await this.userRepository.findOneBy({ id });
+    return { message: 'User updated', user };
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    const user = await this.userRepository.findOneBy({ id });
+    const process = await this.userRepository.softDelete(id);
+    return { message: 'User deleted', user };
   }
 }

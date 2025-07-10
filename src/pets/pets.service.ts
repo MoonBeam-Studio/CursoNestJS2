@@ -105,5 +105,6 @@ export class PetsService {
       throw new UnauthorizedException('You do not have permission to delete this pet');
     }
     return this.petRepository.softDelete(id);
+    
   }
 }

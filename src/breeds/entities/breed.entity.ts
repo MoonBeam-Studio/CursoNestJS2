@@ -19,6 +19,12 @@ export class Breed {
   description: string;
   @Column({default: ''})
   origin: string;
+  @Column({default: false})
+  childFriendly: boolean;
+  @Column({default: false})
+  dogFriendly: boolean;
+  @Column({default: 5})
+  energyLevel: number;
   @CreateDateColumn()
   createdAt: Date;
   @UpdateDateColumn()

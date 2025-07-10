@@ -1,11 +1,11 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ValidationsService } from './validations.service';
 import { CreateValidationDto } from './dto/create-validation.dto';
-import { UpdateValidationDto } from './dto/update-validation.dto';
 import { Auth } from '../auth/decorators/auth.decorator';
 import { Role } from '../enums/rol.enum';
 import { ApiBearerAuth, ApiHeader, ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@Auth(Role.ADMIN)
 @ApiBearerAuth()
 @ApiTags('Users - User related fields (register, validation, login, show all, etc)')
 @Controller('validations')
@@ -18,31 +18,27 @@ export class ValidationsController {
     return this.validationsService.create(createValidationDto);
   }
 
-  @Auth(Role.ADMIN)
   @Get()
   @ApiOperation({ summary: 'List all validation requests' })
   findAll() {
     return this.validationsService.findAll();
   }
 
-  @Auth(Role.ADMIN)
   @Get(':id')
   @ApiOperation({ summary: 'List specific validation request by ID' })
   findOne(@Param('id') id: number) {
     return this.validationsService.findOne(id);
   }
 
-  @Auth(Role.ADMIN)
   @Get('validate/:id')
   @ApiOperation({ summary: 'Validate a user by ID' })
   validateUser(@Param('id') id: number) {
     return this.validationsService.validateUser(id);
   }
 
-  @Auth(Role.ADMIN)
-  @Delete('denegate/:id')
-  @ApiOperation({ summary: 'Denegate a user by ID' })
-  remove(@Param('id') id: number) {
+  @Get('denegate/:id')
+  @ApiOperation({ summary: 'Deny a validation request by ID' })
+  denegateUser(@Param('id') id: number) {
     return this.validationsService.remove(id);
   }
 }

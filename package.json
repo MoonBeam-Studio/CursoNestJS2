@@ -1,5 +1,4 @@
 {
-
   "name": "curso",
   "version": "0.0.1",
   "description": "",
@@ -7,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "seed": "npm run build && npx typeorm-extension seed:run -d ./dist/data-source.js",
+    "seed": "yarn run build && npx typeorm-extension seed:run -d ./dist/data-source.js",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",

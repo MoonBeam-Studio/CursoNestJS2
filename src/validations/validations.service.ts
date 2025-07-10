@@ -29,7 +29,7 @@ export class ValidationsService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} validation`;
+    return this.validationRepository.findOneBy({ id });
   }
 
   async validateUser(id: number) {
@@ -46,6 +46,11 @@ export class ValidationsService {
   }
 
   async remove(id: number) {
-    return await this.validationRepository.softDelete(id);
+    const validation = await this.validationRepository.findOneBy({ id });
+    if (!validation) {
+      return `Validation request with id #${id} not found`;
+    }
+    const user = await this.validationRepository.findOneBy({ id });
+    return { message: 'User denegated', user };
   }
 }

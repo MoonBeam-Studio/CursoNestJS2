@@ -22,6 +22,12 @@ export class Cat {
     eager: true,
   })
   breed: Breed;
+  @Column({ default: 10 })
+  weight: number;
+  @Column({ default: 10 })
+  height: number;
+  @Column({ default: 10 })
+  length: number;
   @DeleteDateColumn()
   deletedAt: Date;
   @CreateDateColumn()

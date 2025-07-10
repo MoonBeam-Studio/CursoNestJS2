@@ -40,6 +40,20 @@ export class CatsService {
     return await this.catRepository.findOneBy({ id });
   }
 
+  async compare(id1: number, id2: number) {
+    const cat1 = await this.catRepository.findOneBy({ id: id1 });
+    const cat2 = await this.catRepository.findOneBy({ id: id2 });
+
+    if (!cat1 || !cat2) {
+      throw new BadRequestException('One or both cats not found');
+    }
+
+    return {
+      cat1,
+      cat2,
+    };
+  }
+
   async update(id: number, updateCatDto: UpdateCatDto) {
     // await this.catRepository.update(id, updateCatDto).then(() => {
     //   return `This action updates a #${id} cat`;
@@ -47,8 +61,8 @@ export class CatsService {
   }
 
   async remove(id: number) {
-    return await this.catRepository.softDelete(id).then(() => {
-      return `This action removes a #${id} cat`;
-    });
+    const cat = await this.catRepository.findOneBy({ id });
+    const remove = await this.catRepository.softDelete(id);
+    return { message: 'Cat deleted', cat };
   }
 }

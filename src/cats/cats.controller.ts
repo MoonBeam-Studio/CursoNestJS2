@@ -37,6 +37,11 @@ export class CatsController {
   findOne(@Param('id') id: number) {
     return this.catsService.findOne(id);
   }
+  @Get(':id1/:id2')
+  @ApiOperation({ summary: 'Compare two cats by id' })
+  compare(@Param('id1') id1: number, @Param('id2') id2: number) {
+    return this.catsService.compare(id1, id2);
+  }
 
   @Auth(Role.ADMIN)
   @Patch(':id')
